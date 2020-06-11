@@ -1,0 +1,57 @@
+{% if dane is empty %}
+    <div class="col d-flex justify-content-center" >
+        <div class="card text-white bg-dark mb-3" style = "max-width: 20rem;" >
+            <div class="card-header" > Brak takiej usługi!</div >
+            <div class="card-body" >
+                <h4 class="card-title" > Jeśli uważasz, że poszło coś nie tak skontaktuj się z administracją!</h4 >
+            </div>
+        </div>
+    </div >
+{% else %}
+    <div class="col d-flex justify-content-center">
+        <div class="card text-white bg-dark mb-3" style="width: 30rem;">
+            <div class="alert alert-secondary" role="alert">
+                {{ dane.nazwa }}
+            </div>
+            {% if session.error %}
+                <div class="alert alert-danger" role="alert">{{ session.error }}</div>
+            {% endif %}
+        {{ typ|raw }}
+        <div class="card-body">
+            <div class="form-group col-md-6">
+                <form action="buy" method="POST">
+                    <label for="inputState">Klasa na którą chcesz kupić <span class="badge badge-danger">{{ dane.dni }}LVLi</span></label>
+                    <select id="inputState" class="form-control" name="old">
+                        {% if klasy is null %}
+                            <option value="0">Brak klas</option>
+                        {% else %}
+                            {% for key,klasa in klasy %}
+                                <option value="{{ klasa.class }}"> {{ klasa.class }} [{{ klasa.level }} lvl]</option>
+                            {% endfor %}
+                        {% endif %}
+                    </select><br/>
+                    <label for="inputState">Kod Zwrotny</label>
+                    <div class="input-group mb-2 mb-sm-0">
+                        <div class="input-group-addon">@</div>
+                        <input type="text" name="code" class="form-control"
+                               id="inlineFormInputGroupUsername" placeholder="Kod Zwrotny">
+                    </div>
+                    <label for="inputState">Serwer</label>
+                    <select id="inputState" class="form-control" name="serwer">
+
+                        {% if dane.inne == 0 %}
+                            {% for key,serwer in serwery %}
+                                <option value="{{ serwer.idserwera }}"> {{ serwer.nazwa }} </option>
+                            {% endfor %}
+                        {% else %}
+                            <option value="10">CSGO CodMod</option>
+                        {% endif %}
+                    </select><br/>
+                    <input type="hidden" name="serviceid" value="{{ get.id }}">
+                    <button type="submit" class="btn btn-primary">Zakup</button>
+            </div>
+            </form>
+        </div>
+    </div>
+    </div>
+{% endif %}

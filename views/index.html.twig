@@ -1,0 +1,29 @@
+{% if services is empty %}
+    <div class="alert alert-warning" role="alert">
+        Brak usług
+    </div>
+{% else %}
+<div class="alert alert-primary" role="alert">
+    Twoje usługi:
+</div>
+    <table class="table table-dark">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nick</th>
+            <th scope="col">Serwer</th>
+            <th scope="col">Kończy się:</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for key,service in services %}
+            <tr>
+                <th scope="row"> {{ loop.index }}</th>
+                <td> {{ service.nick }} </td>
+                <td> {{ service.serwer }} </td>
+                <td> {{ service.data }} </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endif %}

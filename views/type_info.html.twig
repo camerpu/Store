@@ -1,0 +1,9 @@
+{% if type == 'sms7' %}
+    <div class="alert alert-info" role="alert">Aby uzyskać kod zwrotny wyślij SMS o treści <b>MSMS.MAXPLAY</b> na numer <b>76480</b> Koszt - <b>7,38 PLN brutto</b></div>
+{% elseif type == 'sms30' %}
+    <div class="alert alert-info" role="alert">Aby uzyskać kod zwrotny wyślij SMS o treści <b>MSMS.MAXPLAY</b> na numer <b>79480</b> Koszt - <b>11,07 PLN brutto</b></div>
+{% elseif type == 'przelew' %}
+    <div class="alert alert-info" role="alert">Aby uzyskać kod zwrotny skorzystaj <a href="https://ssl.dotpay.pl/?id=62281&code=MaxPlay-05"><b>Z TEGO LINKU</b></a> - Kod zwrotny przyjdzie Ci na E-Maila</div>
+{% else %}
+    <div class="alert alert-info" role="alert">Brak informacji na temat kupna usługi</div>
+{% endif %}

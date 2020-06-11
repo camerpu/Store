@@ -1,0 +1,32 @@
+<nav class="navbar fixed-top navbar-dark bg-dark">
+    <ul class="nav nav-pills">
+        <li class="nav-item">
+            <a class="nav-link active" href="/strona-glowna">Strona Główna</a>
+        </li>
+        &nbsp;&nbsp;&nbsp;
+        <li class="nav-item">
+            <a class="nav-link" href="/admin/serwery.php">Zarzadzaj serwerami</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/admin/uslugi.php">Zarzadzaj uslugami</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/admin/kody.php">Generowanie kodów</a>
+        </li>
+    </ul>
+    {% if session.steamid is empty %}
+        <a href="?login"><button class="btn btn-outline-success my-2 my-sm-0" type="submit">Zaloguj się</button></a>
+    {% else %}
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle profile-image" data-toggle="dropdown">
+                <img src="{{ steamprofile.avatar }}" class="img-circle special-img"> <button type="button" class="btn btn-primary btn-sm">{{ steamprofile.personaname }}</button> <b class="caret"></b></a>
+            <ul class="dropdown-menu" style="padding: 5px;">
+                <li><a href="?logout"><i class="fa fa-cog"></i> <button type="button" class="btn btn-success btn-sm">Wyloguj się</button></a></li>
+                {% if isAdmin == true %}
+                    <br /><li><a href="admin/admin.php"><i class="fa fa-cog"></i> <button type="button" class="btn btn-danger btn-sm">Panel Admina</button></a></li>
+                {% endif %}
+            </ul>
+        </li>
+    {% endif %}
+
+</nav>

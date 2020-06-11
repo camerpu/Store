@@ -1,0 +1,41 @@
+{% if dane is empty %}
+    <div class="col d-flex justify-content-center" >
+        <div class="card text-white bg-dark mb-3" style = "max-width: 20rem;" >
+            <div class="card-header" > Brak takiej usługi!</div >
+            <div class="card-body" >
+                <h4 class="card-title" > Jeśli uważasz, że poszło coś nie tak skontaktuj się z administracją!</h4 >
+            </div>
+        </div>
+    </div >
+{% else %}
+    <div class="col d-flex justify-content-center">
+        <div class="card text-white bg-dark mb-3" style="width: 30rem;">
+            <div class="alert alert-secondary" role="alert">
+                {{ dane.nazwa }}
+            </div>
+            {% if session.error %}
+                <div class="alert alert-danger" role="alert">{{ session.error }}</div>
+            {% endif %}
+            {{ typ|raw }}
+            <div class="alert alert-danger">
+                Pamiętaj! Kupujesz tutaj UnSilence tylko od blokad automatycznych na 30 dni! Inne blokady poza tą nie znikną!
+                W przypadku dalszych przewinień będziesz otrzymywał kolejne silency!
+            </div>
+            <div class="card-body">
+                <div class="form-group col-md-6">
+                    <form action="buy" method="POST">
+                        <label for="inputState">Kod Zwrotny</label>
+                        <div class="input-group mb-2 mb-sm-0">
+                            <div class="input-group-addon">@</div>
+                            <input type="text" name="code" class="form-control"
+                                   id="inlineFormInputGroupUsername" placeholder="Kod Zwrotny">
+                        </div>
+                        <input type="hidden" name="serwer" value="5">
+                        <input type="hidden" name="serviceid" value="{{ get.id }}">
+                        <br /><button type="submit" class="btn btn-primary">Zakup</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endif %}

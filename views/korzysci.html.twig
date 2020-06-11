@@ -1,0 +1,9 @@
+<div style="text-align: center;">
+    <div class="wyglad" style="font-size: 25px; color: #fff;">Kupno VIPa nie zwalnia z przestrzegania regulaminu serwera!</div><br /><br />
+
+    {% for key, serwer in dane %}
+        <img src="{{ serwer.banner }}" style="width: 350px; height: 100px; margin-left: auto; margin-right: auto;"><br />
+        {{ serwer.tekst|raw }}<br /><br />
+    {% endfor %}
+
+</div>
